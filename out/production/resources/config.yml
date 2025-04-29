@@ -1,0 +1,27 @@
+maxFailedAttempts: 3
+#in seconds
+lockTime: 15
+message:
+  # title / chat
+  type: title
+  #title time in seconds
+  fadeIn: 1
+  stay: 3
+  fadeOut: 1
+messages:
+  register: "§cPlease register."
+  login: "§cPlease log."
+  welcome: "§aWelcome to Magic World!"
+  incorrect_password: "§aIncorrect password!"
+  passwords_do_not_match: "§aThe passwords do not match!"
+  account_locked: "§aYour account has been locked for:"
+  account_locked_time: "§a%time% seconds"
+  username_not_registered: "§aThis username hasn't been registered."
+  username_taken: "§aThis username has already been taken."
+  already_logged_in: "§aYou are already logged in."
+  password_too_short: "§aThe password is not long enough."
+  logged_out: "§aYou have been logged out."
+  already_logged_out: "§aYou are already logged out."
+  error: "§cSomething went wrong!"
+  unknown_error: "§cUnknown error, please report this error!"
+players:

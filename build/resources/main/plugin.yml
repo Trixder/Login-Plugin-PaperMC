@@ -1,0 +1,4 @@
+name: Login
+version: '1.0-SNAPSHOT'
+main: org.trixder.login.Login
+api-version: '1.21'
