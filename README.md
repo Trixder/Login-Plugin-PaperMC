@@ -1,6 +1,6 @@
 # Player Registration Plugin – PaperMC Project [In Development]
 
-This is a Minecraft server plugin built using the PaperMC API. It adds a simple player registration system that prompts new players to register with a password before they can play. Returning players must log in before gaining access to server commands or gameplay features. The goal is to add an extra layer of access control and identity verification to public or semi-public servers.
+This is a Minecraft server plugin built using the PaperMC API. It adds a simple player registration system that prompts new players to register with a password before they can play. Returning players must log in before gaining access to server commands or gameplay features. The goal is to add an extra layer of access control and identity verification to servers.
 
 ## Overview
 
