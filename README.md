@@ -57,3 +57,7 @@ players:
     failedAttempts: 0
     lockedUntil: 0
 ```
+
+## Plan
+
+- **Compatibility with Databases** – Allow server owners to connect this plugin to a database (e.g., MySQL, SQLite, PostgreSQL)
