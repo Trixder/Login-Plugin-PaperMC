@@ -1,4 +1,28 @@
-# Default Config
+# Player Registration Plugin – PaperMC Project [In Development]
+
+This is a Minecraft server plugin built using the PaperMC API. It adds a simple player registration system that prompts new players to register with a password before they can play. Returning players must log in before gaining access to server commands or gameplay features. The goal is to add an extra layer of access control and identity verification to public or semi-public servers.
+
+## Overview
+
+When a new player joins the server, they are required to register a password using a command. Once registered, the system remembers them and prompts them to log in on future joins. Until they log in, they can’t move, chat, or interact with the world. This helps prevent impersonation and gives server owners more control over player access.
+
+## Features
+
+- **Brute-Force Protection** – Limits the number of login attempts to prevent abuse.
+- **Chat and Title Support** – Customize the way messages are displayed to players during registration, login, and other events.
+- **Fully Customizable Response Messages** – Easily change the plugin’s messages, such as the registration prompt or incorrect password notifications.
+
+## Commands
+
+- **/loginreload** - Reloads the plugin’s configuration file.
+- **/register password confirmPassword** - Allows new players to register.
+- **/login password** - Logs in a returning player with their registered password.
+- **/login** - Displays a list of available commands.
+- **/logout** - Logs out the player.
+- **/changepassword oldPassword newPassword confirmNewPassword** - Changes the player’s password before logging in.
+- **/changepassword newPassword confirmNewPassword** - Changes the player’s password after logging in.
+
+## Default Config
 ```yaml
 maxFailedAttempts: 3
 #in seconds
@@ -27,4 +51,9 @@ messages:
   error: "§cSomething went wrong!"
   unknown_error: "§cUnknown error, please report this error!"
 players:
+  Player-Name:
+    password: HashedPassword
+    loggedIn: false
+    failedAttempts: 0
+    lockedUntil: 0
 ```
