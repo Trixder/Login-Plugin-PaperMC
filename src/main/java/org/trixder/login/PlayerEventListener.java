@@ -140,17 +140,16 @@ public class PlayerEventListener implements Listener {
     }
 
     @EventHandler(priority = EventPriority.HIGHEST)
-    public boolean onCommand(PlayerCommandPreprocessEvent e) {
+    public void onCommand(PlayerCommandPreprocessEvent e) {
         if (isLogged(e.getPlayer())) {
             String msg = e.getMessage().toLowerCase();
+            e.getPlayer().sendMessage(msg);
 
-            if (!msg.startsWith("/register") && msg.startsWith("/login") && msg.startsWith("/changepassword")) {
+            if (!msg.startsWith("/register") && !msg.startsWith("/login") && !msg.startsWith("/changepassword")) {
                 e.setCancelled(true);
                 login.Help(e.getPlayer());
             }
 
         }
-
-        return true;
     }
 }
