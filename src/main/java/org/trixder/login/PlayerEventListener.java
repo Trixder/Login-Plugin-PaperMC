@@ -143,7 +143,6 @@ public class PlayerEventListener implements Listener {
     public void onCommand(PlayerCommandPreprocessEvent e) {
         if (isLogged(e.getPlayer())) {
             String msg = e.getMessage().toLowerCase();
-            e.getPlayer().sendMessage(msg);
 
             if (!msg.startsWith("/register") && !msg.startsWith("/login") && !msg.startsWith("/changepassword")) {
                 e.setCancelled(true);
