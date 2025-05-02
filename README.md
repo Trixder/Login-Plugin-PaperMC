@@ -35,8 +35,11 @@ message:
   stay: 3
   fadeOut: 1
 messages:
-  register: "§cPlease register."
-  login: "§cPlease log."
+  register: "§fType §a<password> <password> §fto register."
+  login: "§fType §a<your password> §fto log in."
+  change_password: "§fType §a<old password> <new password> <new password> §fto change your password."
+  warning: "§cAFTER YOU LOG IN DO NOT TYPE YOUR PASSWORD!"
+  warning_in_game: "§cHEY I TOLD YOU NOT TO SHARE YOUR PASSWORD!"
   welcome: "§aWelcome to Magic World!"
   incorrect_password: "§aIncorrect password!"
   passwords_do_not_match: "§aThe passwords do not match!"
@@ -51,11 +54,6 @@ messages:
   error: "§cSomething went wrong!"
   unknown_error: "§cUnknown error, please report this error!"
 players:
-  Player-Name:
-    password: HashedPassword
-    loggedIn: false
-    failedAttempts: 0
-    lockedUntil: 0
 ```
 
 ## Plan
