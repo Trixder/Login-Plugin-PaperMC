@@ -8,18 +8,9 @@ commands:
     usage: /loginreload
     permission: login.admin
     permission-message: You do not have permission to use this command.
-  register:
-    description: Registration
-    usage: /registertest <password> <confirmPassword>
-  login:
-    description: Log in
-    usage: /logintest <password>
   logout:
     description: Log out
     usage: /logout
-  changepassword:
-    description: Change password
-    usage: /changepassword <oldPassword> <newPassword> <confirmNewPassword> or /changepassword <newPassword> <confirmNewPassword>
 permissions:
   login.normal:
     description: Allows the player to use the some /login commands

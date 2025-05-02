@@ -60,129 +60,40 @@ public final class Login extends JavaPlugin implements Listener {
         getLogger().info("[Trixder-Plugin] Trixder Plugin Disabled.");
     }
 
-    /*public void HandleInput(CommandSender sender, String command) {
-        if (command.startsWith("/")) command = command.substring(1);
-
-        String[] args = command.split(" ");
-
-        switch (args.length) {
-            case 4 -> {
-                if (sender.hasPermission("login.use")) {
-                    if (args[0].equalsIgnoreCase("changepassword")) {
-                        SendMessage(sender, users.ChangePassword(sender.getName(), args[1], args[2], args[3]));
-                    }
-                    return;
-                }
-            }
-            case 3 ->{
-                if (args[0].equalsIgnoreCase("register") && sender.hasPermission("login.use")) {
-                    SendMessage(sender, users.Register(sender.getName(), args[1], args[2]));
-                } else if (args[0].equalsIgnoreCase("changepassword") && sender.hasPermission("login.normal")) {
-                    SendMessage(sender, users.ChangePassword(sender.getName(), args[1], args[2]));
-                }
-
-                return;
-            }
-            case 2 -> {
-                if (args[0].equalsIgnoreCase("login") && sender.hasPermission("login.use")) {
-                    SendMessage(sender, users.Login(sender.getName(), args[1]));
-                }
-
-                return;
-            }
-            case 1 -> {
-                if (args[0].equalsIgnoreCase("logout") && sender.hasPermission("login.normal")) {
-                    SendMessage(sender, users.Logout(sender.getName()));
-                } else if (args[0].equalsIgnoreCase("loginreload")  && sender.hasPermission("login.admin")) {
-                    if (sender instanceof Player) {
-                        if (users.IsLogged(sender.getName())) {
-                            this.reloadConfig();
-                            sender.sendMessage("§aLogin config reloaded!");
-                        } else SendMessage(sender, MessageType.ERROR);
-                    } else {
-                        this.reloadConfig();
-                        getLogger().info("[Trixder-Plugin] Login config reloaded!");
-                    }
-
-                } else if (args[0].equalsIgnoreCase("login")) {
-                    Help(sender);
-                }
-
-                return;
-            }
-            default -> {
-                sender.sendMessage("§aCommand with this amount of arguments is not recognized.");
-                return;
-            }
-        }
-
-        return;
-    }*/
-
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
-        switch (args.length) {
-            case 3 -> {
-                if (sender.hasPermission("login.use")) {
-                    if (command.getName().equalsIgnoreCase("changepassword")) {
-                        SendMessage(sender, users.ChangePassword(sender.getName(), args[0], args[1], args[2]));
-                    }
-                    return true;
-                }
-            }
-            case 2 ->{
-                if (command.getName().equalsIgnoreCase("register") && sender.hasPermission("login.use")) {
-                    SendMessage(sender, users.Register(sender.getName(), args[0], args[1]));
-                } else if (command.getName().equalsIgnoreCase("changepassword") && sender.hasPermission("login.normal")) {
-                    SendMessage(sender, users.ChangePassword(sender.getName(), args[0], args[1]));
-                }
-
-                return true;
-            }
-            case 1 -> {
-                if (command.getName().equalsIgnoreCase("login") && sender.hasPermission("login.use")) {
-                    SendMessage(sender, users.Login(sender.getName(), args[0]));
-                }
-
-                return true;
-            }
-            case 0 -> {
-                if (command.getName().equalsIgnoreCase("logout") && sender.hasPermission("login.normal")) {
-                    SendMessage(sender, users.Logout(sender.getName()));
-                } else if (command.getName().equalsIgnoreCase("loginreload")  && sender.hasPermission("login.admin")) {
-                    if (sender instanceof Player) {
-                        if (users.IsLogged(sender.getName())) {
-                            this.reloadConfig();
-                            sender.sendMessage("§aLogin config reloaded!");
-                        } else SendMessage(sender, MessageType.ERROR);
-                    } else {
+        if (args.length == 0) {
+            if (command.getName().equalsIgnoreCase("logout") && sender.hasPermission("login.normal")) {
+                SendMessage(sender, users.Logout(sender.getName()));
+            } else if (command.getName().equalsIgnoreCase("loginreload") && sender.hasPermission("login.admin")) {
+                if (sender instanceof Player) {
+                    if (users.IsLogged(sender.getName())) {
                         this.reloadConfig();
-                        getLogger().info("[Trixder-Plugin] Login config reloaded!");
-                    }
-
-                } else if (command.getName().equalsIgnoreCase("login")) {
-                    Help(sender);
+                        sender.sendMessage("§aLogin config reloaded!");
+                    } else SendMessage(sender, MessageType.ERROR);
+                } else {
+                    this.reloadConfig();
+                    getLogger().info("[Trixder-Plugin] Login config reloaded!");
                 }
 
-                return true;
+            } else if (command.getName().equalsIgnoreCase("login")) {
+                Help(sender);
             }
-            default -> {
-                sender.sendMessage("§aCommand with this amount of arguments is not recognized.");
-                return true;
-            }
-        }
 
-        return false;
+            return true;
+        }
+        sender.sendMessage("§aCommand with this amount of arguments is not recognized.");
+        return true;
     }
 
     public void Help(CommandSender sender) {
         sender.sendMessage("§aLogin Help:");
 
         if (sender.hasPermission("login.normal")) {
-            sender.sendMessage("§a/login <password>");
-            sender.sendMessage("§a/register <password> <confirmPassword>");
-            sender.sendMessage("§a/changepassword <oldPassword> <newPassword> <confirmNewPassword> §7- Change with old password");
-            sender.sendMessage("§a/changepassword <newPassword> <confirmNewPassword> §7- If already authenticated");
+            sender.sendMessage("§alogin - <password>");
+            sender.sendMessage("§aregister - <password> <confirmPassword>");
+            sender.sendMessage("§achangepassword - <oldPassword> <newPassword> <confirmNewPassword>");
+            sender.sendMessage("§a/logout - Logs you out.");
         }
 
         if (sender.hasPermission("login.admin")) {
@@ -220,7 +131,6 @@ public final class Login extends JavaPlugin implements Listener {
             case INCORRECT_PASSWORD -> {
                 player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_BANJO, 1.0f, .5f);
                 users.FailedAttempts(sender.getName());
-                //TODO 1: Kick player
                 MessageType(player, getConfig().getString("messages.password_incorrect", "§aIncorrect password!"), "");
             }
             case PASSWORD_MISMATCH -> {

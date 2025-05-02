@@ -1,4 +1,32 @@
 name: Login
-version: '1.0-SNAPSHOT'
+version: '1.0'
 main: org.trixder.login.Login
 api-version: '1.21'
+commands:
+  loginreload:
+    description: Reloads the plugin
+    usage: /loginreload
+    permission: login.admin
+    permission-message: You do not have permission to use this command.
+  register:
+    description: Registration
+    usage: /register <password> <confirmPassword>
+  login:
+    description: Log in
+    usage: /login <password>
+  logout:
+    description: Log out
+    usage: /logout
+  changepassword:
+    description: Change password
+    usage: /changepassword <oldPassword> <newPassword> <confirmNewPassword> or /changepassword <newPassword> <confirmNewPassword>
+permissions:
+  login.normal:
+    description: Allows the player to use the some /login commands
+    default: true
+  login.use:
+    description: Allows the player to use the /login commands
+    default: true
+  login.admin:
+    description: Allows the player to use /login admin commands
+    default: op

@@ -23,7 +23,7 @@ public class Users {
     }
 
     // Checks if the player is registered
-    public boolean GetPlayer(String playerName) {
+    public boolean IsRegistered(String playerName) {
         return getConfig().contains("players." + playerName);
     }
 
@@ -76,6 +76,7 @@ public class Users {
 
     // Add player to the yml file
     public void AddPlayer(String playerName, String password) {
+        login.getLogger().info(password);
         getConfig().set("players." + playerName + ".password", EncryptPassword(password));
         getConfig().set("players." + playerName + ".loggedIn", true);
         getConfig().set("players." + playerName + ".failedAttempts", 0);
@@ -108,34 +109,21 @@ public class Users {
         return WELCOME;
     }
 
-    // Changes the password of an account while logged in
-    public Login.MessageType ChangePassword(String playerName, String newPassword, String confirmNewPassword) {
-        if (Locked(playerName)) return ACCOUNT_LOCKED;
-        else if (newPassword.length() < 6) return PASSWORD_TOO_SHORT;
-        else if (!newPassword.equals(confirmNewPassword)) return PASSWORD_MISMATCH;
-
-        AddPlayer(playerName, newPassword);
-
-        return WELCOME;
-    }
-
-
     // logs out the player
     public Login.MessageType Logout(String playerName) {
-        if (GetPlayer(playerName)) {
+        if (IsRegistered(playerName)) {
             getConfig().set("players." + playerName + ".loggedIn", false);
             saveConfig();
             return LOGGED_OUT;
         } else return ALREADY_LOGGED_OUT;
     }
 
-
     // logs in the player
     public Login.MessageType Login(String playerName, String password) {
         if (IsLogged(playerName)) return ALREADY_LOGGED_IN;
         else if (Locked(playerName)) return ACCOUNT_LOCKED;
         else if (CheckPassword(playerName, password)) return INCORRECT_PASSWORD;
-        else if (!GetPlayer(playerName)) return USERNAME_NOT_REGISTERED;
+        else if (!IsRegistered(playerName)) return USERNAME_NOT_REGISTERED;
 
         getConfig().set("players." + playerName + ".loggedIn", true);
         getConfig().set("players." + playerName + ".failedAttempts", 0);
