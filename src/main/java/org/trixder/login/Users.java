@@ -103,7 +103,7 @@ public class Users {
         else if (!newPassword.equals(confirmNewPassword)) return PASSWORD_MISMATCH;
         else if (CheckPassword(playerName, oldPassword)) return INCORRECT_PASSWORD;
 
-        AddPlayer(playerName, oldPassword);
+        AddPlayer(playerName, newPassword);
 
         return WELCOME;
     }
