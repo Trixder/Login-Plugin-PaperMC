@@ -61,3 +61,4 @@ players:
 ## Plan
 
 - **Compatibility with Databases** – Allow server owners to connect this plugin to a database (e.g., MySQL, SQLite, PostgreSQL)
+- **Auto Login** - Allow players with paid Minecraft accounts to log in automatically without entering credentials each time.
