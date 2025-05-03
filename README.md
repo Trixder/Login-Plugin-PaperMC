@@ -12,15 +12,17 @@ When a new player joins the server, they are required to register a password usi
 - **Chat and Title Support** – Customize the way messages are displayed to players during registration, login, and other events.
 - **Fully Customizable Response Messages** – Easily change the plugin’s messages, such as the registration prompt or incorrect password notifications.
 
+## Usage
+
+- **register** – When a player joins and is not registered, they will be prompted to register.
+- **login** – When a player is registered, they will be prompted to log in upon joining.
+- **change password** – Allows the player to change their password before logging in (requires current password).
+
 ## Commands
 
 - **/loginreload** - Reloads the plugin’s configuration file.
-- **/register password confirmPassword** - Allows new players to register.
-- **/login password** - Logs in a returning player with their registered password.
 - **/login** - Displays a list of available commands.
 - **/logout** - Logs out the player.
-- **/changepassword oldPassword newPassword confirmNewPassword** - Changes the player’s password before logging in.
-- **/changepassword newPassword confirmNewPassword** - Changes the player’s password after logging in.
 
 ## Default Config
 ```yaml
